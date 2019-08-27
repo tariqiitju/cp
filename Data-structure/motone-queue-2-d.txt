@@ -1,0 +1,43 @@
+vector<vector<int>> minimum_in_every_r_c_submatrix(vector<vector<int>> &a , int r ,int c){
+	int n = a.size();
+	int m = a[0].size();
+	vector< vector<int> >t(n);
+	for(int i = 0;i<n;i++){
+		t[i].resize(m-c+1);
+		deque<int>q;
+		for(int j=0;j<c;j++){
+			while(not q.empty() and a[i][q.front()] > a[i][j])		//alter the > with < for max
+				q.pop_front();
+			q.push_front(j);
+			
+		}
+		t[i][0] = a[i][q.back()];
+		for(int j=c;j<m;j++){
+			while(not q.empty() and j - q.back() >= c)
+				q.pop_back();
+			while(not q.empty() and a[i][q.front()] > a[i][j])		//alter the > with < for max
+				q.pop_front();
+			q.push_front(j);
+			t[i][j-c+1] = a[i][q.back()];
+		}
+	}
+	vector< vector<int> >res(n-r+1);for(int i=0;i<=n-r;i++)res[i].resize(m-c+1);
+	for(int j=0;j<=m-c;j++){
+		deque<int> q;
+		for(int i=0;i<r;i++){
+			while(not q.empty() and t[q.front()][j] > t[i][j])		//alter the > with < for max
+				q.pop_front();
+			q.push_front(i);
+		}
+		res[0][j] = t[q.back()][j];
+		for(int i=r;i<n;i++){
+			while(not q.empty() and i - q.back() >= r)
+				q.pop_back();
+			while(not q.empty() and t[q.front()][j] > t[i][j])		//alter the > with < for max
+				q.pop_front();
+			q.push_front(i);
+			res[i-r+1][j] = t[q.back()][j];
+		}
+	}
+	return res;
+}

@@ -1,0 +1,20 @@
+vector<int> monotone_q(vector<int> a, int m){
+	int n = a.size();
+	vector<int>t(n-m+1);
+	deque<int>q;
+	for(int i=0;i<m;i++){
+		while(not q.empty() and a[q.front()] > a[i])		//alter the > with < for max
+			q.pop_front();
+		q.push_front(i);
+	}
+	t[0] = a[q.back()];
+	for(int i=m;i<n;i++){
+		while(not q.empty() and i - q.back() >= m)
+			q.pop_back();
+		while(not q.empty() and a[q.front()] > a[i])		//alter the > with < for max
+			q.pop_front();
+		q.push_front(i);
+		t[i-m+1] = a[q.back()];
+	}
+	return t;
+}

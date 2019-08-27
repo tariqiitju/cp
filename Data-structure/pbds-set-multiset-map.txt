@@ -1,0 +1,31 @@
+#include <ext/pb_ds/assoc_container.hpp>    // Common file
+using namespace __gnu_pbds;
+typedef tree<
+int,                                        //Data Type
+null_type,                                  //mapped type
+less<int>,                                  //Data type
+rb_tree_tag,
+tree_order_statistics_node_update>
+ordered_set;                                //Ordered set
+
+typedef tree<
+int,                                        //Data Type
+int,                                        //Mapped Type
+less<int>,                                  //Data type
+rb_tree_tag,
+tree_order_statistics_node_update>
+Map;                                        //Ordered Map
+//order_of_key(x) -- number of element LESS THAN x
+//find_by_order(i) -- i'th element in sorted order (0 based indexing)
+
+typedef tree<
+pair<int, int>,                             ///First int is Data Type
+null_type,
+less<pair<int, int>>,                       //First int is Data Type
+rb_tree_tag,
+tree_order_statistics_node_update> ordered_multi_set;
+//order_of_key({x,0}) -- number of element LESS THAN x
+//order_of_key({x+1,0}) -- number of element LESS THAN or EQUAL x
+//find_by_order(i) -- i'th element in sorted order (0 based indexing)
+//add a timer to have multiple element with same value
+//to erase a single value use lower bound

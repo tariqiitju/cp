@@ -1,0 +1,21 @@
+calculate-size(u,par)
+	size[u]=1;
+	for v adjacent(u):
+		if v!=par:
+			size[u]+=calculate-size(v,u)
+	return size[u]
+
+find-centroid(u,par,tsize)
+	for v adjacent(u):
+		if v!=par:
+			if size[v]>tsize/2:
+				return find-centroid(v,u,tsize)
+	return u
+make-centroid-tree(u,par)
+	calculate-size(u,par)
+	cen=find-centroid(u,par,size[u])
+	deleted[cen]=1
+	centroid-parent[cen]=par;
+	for v adjacent(cen):
+		if not deleted[v]:
+			make-centroid-tree(v,cen)
