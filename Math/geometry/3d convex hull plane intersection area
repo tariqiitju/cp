@@ -1,0 +1,7 @@
+For every pair of (p,q)vertices in 3d convex hull:
+	Find the intersection point of plane and line(p,q)
+		If co - inside : collect these two points
+		Else if intersection point is on segment of (p,q):
+			collect the point
+Build planner convex hull with collected point. To do that change all the points in 2d co-cordinate (using to_plane function in 3d geo template). Then build 2d convex hull . and find the area 
+		
