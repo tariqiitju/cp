@@ -1,0 +1,8 @@
+mdular_linear_equision_solver(a,b,m):
+   	d,x,y=egcd(a,m) //[ax+my=d=gcd(a,m)]
+   	if d|b
+          		x0=(b/d)x
+          		for i=[0,d-1]
+                 		add (x0+(m/d)i) (mod m) as solution
+   	else
+          		no solution
