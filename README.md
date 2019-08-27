@@ -1,2 +1,2 @@
-Competative Programming Libtrary
+Competative Programming Library
 ===
