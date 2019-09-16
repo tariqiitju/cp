@@ -4,9 +4,9 @@ const int MX = 1e5 + 5;
 const int _Y = 26;
 #define VAL(c)  ((c)-'a')
 struct node{
-    int len,link,e[_Y];
-    node(){len=link=0;memset(e,0,sizeof(e));}
-    inline void clear(){len=link=0;memset(e,0,sizeof(e));}
+    int len,link,e[_Y];ll cnt=0;
+    node(){cnt=len=link=0;memset(e,0,sizeof(e));}
+    inline void clear(){cnt=len=link=0;memset(e,0,sizeof(e));}
 }ALL[MX];
 int avl = 1;                        //Each test case
 inline int New(){
@@ -36,6 +36,7 @@ struct palindromicTree{
                 ALL[cur].len = ALL[last].len + 2;
                 ALL[cur].link = ALL[cur].len == 1 ? rootEven : ALL[x].e[c];
             }
+            ALL[ALL[last].e[c]].cnt++;
             last = ALL[last].e[c];
         }
     }
