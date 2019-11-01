@@ -4,7 +4,7 @@ void arDFS(int u,int par=-1){//d[u] is 0 initially
 	d[u]=low[u]=Time++;
 	int ch=0;
 	for(int v : adj[u]){
-		if(d[u]){
+		if(d[v]){
 			if(par != v)low[u]=min(low[u],d[v]);
 		}else{
 			ch++;
